@@ -1,0 +1,23 @@
+{
+  "name": "copilot-shell-starter",
+  "version": "1.0.0",
+  "description": "An Electron-based AI copilot shell interface.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "amanswrath",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "electron": "28.3.3"
+  },
+  "overrides": {
+    "boolean": "3.1.0"
+  },
+  "dependencies": {
+    "const": "^1.0.0",
+    "node-pty": "^1.0.0"
+  }
+}

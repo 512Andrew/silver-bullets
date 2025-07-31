@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Juniper
+Comment=ChatGPT liason 
+Exec=electron .
+Icon=airgeddon
+Path=/home/amanswrath/SpecialProjects/Welcome-Juniper/
+Terminal=true
+StartupNotify=true
+GenericName=Quick start launcher for Juniper
