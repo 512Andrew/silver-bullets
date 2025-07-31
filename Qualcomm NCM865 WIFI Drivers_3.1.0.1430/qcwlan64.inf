@@ -1,0 +1,994 @@
+;/****************************************************************************
+; * Qualcomm Wireless LAN Wi-FiCx Miniport Adapter                       *
+; *                                                                          *
+; * Copyright (c) 2021-2025 Qualcomm Technologies, Inc.                   *
+; * All Rights Reserved.                                                     *
+; * Confidential and Proprietary - Qualcomm Technologies, Inc.       *
+; *                                                                          *
+; * INF file for Qualcomm reference designs                          *
+; ****************************************************************************/
+
+[version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGUID   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %QUALCOMM%
+CatalogFile = qcwlan64.cat
+DriverVer   = 01/27/2025,3.1.0.1430
+PnpLockdown = 1
+
+[Manufacturer]
+%QUALCOMM%  = QUALCOMM, NTamd64.10.0...22000
+
+[ControlFlags]
+ExcludeFromSelect = *
+
+;
+; OS 10.0 Manufacturer section
+;
+[QUALCOMM.NTamd64.10.0...22000]
+; DisplayName               Section                 DeviceID
+; -----------               -------                 --------
+;QC Reference Design
+%QcWlan.DeviceDesc.785x%     = QcWlan_BERYLLIUM.ndi,      			   PCI\VEN_17CB&DEV_1107&SUBSYS_110717CB&REV_01
+%QcWlan.DeviceDesc.785x_M%   = QcWlan_BERYLLIUM.ndi,      		       PCI\VEN_17CB&DEV_1107&SUBSYS_141400AC
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_BERYLLIUM.ndi,      			   PCI\VEN_17CB&DEV_1107&SUBSYS_337817CB&REV_01
+%QcWlan.DeviceDesc.NCM835%   = QcWlan_BERYLLIUM.ndi,      			   PCI\VEN_17CB&DEV_1107&SUBSYS_338017CB&REV_01
+%QcWlan.DeviceDesc.NCM825%   = QcWlan_NCM825.ndi,      			       PCI\VEN_17CB&DEV_1107&SUBSYS_337917CB&REV_01
+%QcWlan.DeviceDesc.NCM865_D% = QcWlan_D_NCM865.ndi,      			   PCI\VEN_17CB&DEV_1107&SUBSYS_E0DC105B
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_A_NCM865.ndi,      		       PCI\VEN_17CB&DEV_1107&SUBSYS_E0EA105B
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_NCM865.ndi,                      PCI\VEN_17CB&DEV_1107&SUBSYS_E0ED105B
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_NCM865_G.ndi,                    PCI\VEN_17CB&DEV_1107&SUBSYS_E0FB105B
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_NCM865.ndi,                      PCI\VEN_17CB&DEV_1107&SUBSYS_E109105B
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_NCM865.ndi,                      PCI\VEN_17CB&DEV_1107&SUBSYS_E10A105B
+%QcWlan.DeviceDesc.NCM835%   = QcWlan_NCM835.ndi,                      PCI\VEN_17CB&DEV_1107&SUBSYS_E10D105B
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_NCM865_M.ndi,                    PCI\VEN_17CB&DEV_1107&SUBSYS_E0F7105B
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_NCM865.ndi,                      PCI\VEN_17CB&DEV_1107&SUBSYS_E133105B
+%QcWlan.DeviceDesc.NCM825%   = QcWlan_NCM825.ndi,      			       PCI\VEN_17CB&DEV_1107&SUBSYS_E134105B
+;For Quectel
+%QcWlan.DeviceDesc.NCM865%   = QcWlan_NCM865.ndi,                      PCI\VEN_17CB&DEV_1107&SUBSYS_80001EAC
+%QcWlan.DeviceDesc.NCM835%   = QcWlan_NCM835.ndi,                      PCI\VEN_17CB&DEV_1107&SUBSYS_80021EAC
+%QcWlan.DeviceDesc.NCM825%   = QcWlan_NCM825.ndi,      			       PCI\VEN_17CB&DEV_1107&SUBSYS_80031EAC
+;For HP
+%QcWlan.DeviceDesc.NCM835%   = QcWlan_NCM835_H.ndi,                    PCI\VEN_17CB&DEV_1107&SUBSYS_8D68103C
+;For Azurewave
+%QcWlan.DeviceDesc.NCM835%   = QcWlan_NCM835_AW.ndi,                   PCI\VEN_17CB&DEV_1107&SUBSYS_60211A3B
+;For Lenovo
+%QcWlan.DeviceDesc.NCM825%   = QcWlan_NCM825_L.ndi,      			   PCI\VEN_17CB&DEV_1107&SUBSYS_E0E617AA
+%QcWlan.DeviceDesc.NCM835%   = QcWlan_NCM835_L.ndi,      			   PCI\VEN_17CB&DEV_1107&SUBSYS_E12B17AA
+;For MSI
+%QcWlan.DeviceDesc.NCM835%   = QcWlan_NCM835_M.ndi,                    PCI\VEN_17CB&DEV_1107&SUBSYS_E136105B
+
+;;Start of BERYLLIUM section
+[QcWlan_BERYLLIUM.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, wowWakePattern.reg, DisableS0Idle.reg, enableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_BERYLLIUM.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_BERYLLIUM.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[wdf]
+KmdfLibraryVersion      = 1.33
+
+[QcWlan_BERYLLIUM.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan_DMAr.Service, QcWlan.EventLog
+
+[QcWlan_BERYLLIUM.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_BERYLLIUM.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of BERYLLIUM section
+
+;;Start of DELL NCM865 section
+[QcWlan_D_NCM865.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM865_D.reg, wowWakePattern.reg, DisableS0Idle.reg, disableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM865.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_D_NCM865.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_D_NCM865.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan_DMAr.Service, QcWlan.EventLog
+
+[QcWlan_D_NCM865.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_D_NCM865.ndi.NTamd64.HW]
+AddReg  = MSI_8.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of DELL NCM865 section
+
+;;Start of NCM865 section
+[QcWlan_NCM865.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM865.reg, wowWakePattern.reg, DisableS0Idle.reg, enableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM865.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM865.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM865.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_NCM865.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM865.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM865 section
+
+;;Start of NCM865 Acer section
+[QcWlan_A_NCM865.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM865.reg, wowWakePattern.reg, DisableS0Idle.reg, enableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM865.CopyFiles, QcWlan_BD_A_NCM865.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_A_NCM865.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_A_NCM865.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_A_NCM865.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_A_NCM865.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM865 Acer section
+
+;;Start of NCM865_M section
+[QcWlan_NCM865_M.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM865.reg, wowWakePattern.reg, DisableS0Idle.reg, EnableShowPowerPage.reg, enableWmmTxop.reg, DynamicIMPS.reg, PcieLinkRetry.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM865.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM865_M.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM865_M.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_NCM865_M.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM865_M.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM865_M section
+
+;;Start of NCM825 section
+[QcWlan_NCM825.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM825.reg, wowWakePattern.reg, DisableS0Idle.reg, enableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM825.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+;;Start of NCM865_G section
+[QcWlan_NCM865_G.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM865.reg, wowWakePattern.reg, DisableS0Idle.reg, enableWmmTxop.reg, DisableIdlePowerSave.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM865.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM865_G.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM865_G.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_NCM865_G.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM865_G.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM865_G section
+
+[QcWlan_NCM825.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM825.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_NCM825.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM825.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM825 section
+
+;;Start of NCM825_L section
+[QcWlan_NCM825_L.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, NsOffload.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM825.reg, wowWakePattern.reg, DisableS0Idle.reg, enableHwRfKill.reg, disableWmmTxop.reg, DisableReport6GAPtoOS.reg, disableCH233.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM825.CopyFiles, QcWlan_BD_LE_NCM825.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM825_L.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM825_L.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan_DMAr.Service, QcWlan.EventLog
+
+[QcWlan_NCM825_L.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM825_L.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM825_L section
+
+;;Start of NCM835 section
+[QcWlan_NCM835.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM835.reg, wowWakePattern.reg, DisableS0Idle.reg, enableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM835.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM835.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM835.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_NCM835.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM835.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM835 section
+
+;;Start of NCM835_L section
+[QcWlan_NCM835_L.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, NsOffload.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM835.reg, wowWakePattern.reg, DisableS0Idle.reg, enableHwRfKill.reg, disableWmmTxop.reg, DisableReport6GAPtoOS.reg, disableCH233.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM835.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM835_L.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM835_L.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan_DMAr.Service, QcWlan.EventLog
+
+[QcWlan_NCM835_L.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM835_L.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM835_L section
+
+;;Start of NCM835_H section
+[QcWlan_NCM835_H.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM835_H.reg, wowWakePattern.reg, DisableS0Idle.reg, RejectLegacySecBeAp.reg, disableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM835.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM835_H.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM835_H.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan_DMAr.Service, QcWlan.EventLog
+
+[QcWlan_NCM835_H.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM835_H.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM835_H section
+
+;;Start of NCM835_AW section
+[QcWlan_NCM835_AW.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM835.reg, wowWakePattern.reg, DisableS0Idle.reg, enableWmmTxop.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM835.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM835_AW.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM835_AW.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_NCM835_AW.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM835_AW.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM835_AW section
+
+;;Start of NCM835_M section
+[QcWlan_NCM835_M.ndi.NTamd64]
+Characteristics = 0x84
+BusType         = 5
+AddReg          = QcWlan_os63.reg, QcWlan11n.reg, roam.reg, wmmac.reg, enableLegacyBurst.reg, FileName.reg, TxBf.reg, wowEnable.reg, lso.reg, ReceiveSideScaling.reg, checksumOffload.reg, RecoveryPolicy.reg, BD_NCM835.reg, wowWakePattern.reg, DisableS0Idle.reg, EnableShowPowerPage.reg, enableWmmTxop.reg, DynamicIMPS.reg, PcieLinkRetry.reg
+CopyFiles       = QcWlan.CopyFiles, QcWlanFWFile.CopyFiles, QcWlan_BD_NCM835.CopyFiles
+*IfType         = 71        ; IF_TYPE_IEEE80211
+*MediaType      = 16        ; NdisMediumNative802_11
+*PhysicalMediaType = 9      ; NdisPhysicalMediumNative802_11
+NumberOfNetworkInterfaces   = 5; For WIFI DIRECT DEVICE AND ROLE ADAPTER
+; TODO: Set this to 0 if your device is not a physical device. 
+*IfConnectorPresent     = 1
+; In most cases, you can keep these at their default values. 
+*ConnectionType         = 1     ; NET_IF_CONNECTION_DEDICATED 
+*DirectionType          = 0     ; NET_IF_DIRECTION_SENDRECEIVE 
+*AccessType             = 2     ; NET_IF_ACCESS_BROADCAST 
+*HardwareLoopback       = 0     ; false 
+
+Include         = machine.inf
+
+[QcWlan_NCM835_M.ndi.NTamd64.Wdf]
+KmdfService = qcwlan, wdf
+
+[QcWlan_NCM835_M.ndi.NTamd64.Services]
+AddService = qcwlan, 2, QcWlan.Service, QcWlan.EventLog
+
+[QcWlan_NCM835_M.ndi.NTamd64.Events]
+AddEventProvider=%GUIDQcWlan%, QcWlan.AddPublisher
+UpdateAutoLogger=EventLog-System,QcWlan.AddSystemEventlogger
+UpdateAutoLogger=WiFiDriverIHVSession,QcWlan.AddWifiIHVAutologger
+
+[QcWlan_NCM835_M.ndi.NTamd64.HW]
+AddReg  = MSI.reg, WDF.reg
+Needs   = PciASPMOptIn.HW
+;;End of NCM835_M section
+
+;;Start of registries sections
+[QcWlan_os63.reg]
+HKR, Ndi,                           Service,    0, "qcwlan"
+HKR, Ndi\Interfaces,                UpperRange, 0, "ndis5"
+HKR, Ndi\Interfaces,                LowerRange, 0, "wlan,ethernet"
+
+[QcWlan11n.reg]
+HKR, Ndi\Params\roamPolicy,         ParamDesc,  0, %RoamAggressive%
+HKR, Ndi\Params\roamPolicy,         Type,       0, "enum"
+HKR, Ndi\Params\roamPolicy\enum,    "5",        0, %RssiHighest%
+HKR, Ndi\Params\roamPolicy\enum,    "4",        0, %RssiMedium-high%
+HKR, Ndi\Params\roamPolicy\enum,    "3",        0, %RssiMedium%
+HKR, Ndi\Params\roamPolicy\enum,    "2",        0, %RssiMedium-low%
+HKR, Ndi\Params\roamPolicy\enum,    "1",        0, %RssiLowest%
+HKR, Ndi\Params\roamPolicy,         Default,    0, "3"
+HKR, Ndi\params\NetworkAddress,     ParamDesc,  0,  %NetworkAddress%
+HKR, Ndi\params\NetworkAddress,     default,    0,  ""
+HKR, Ndi\params\NetworkAddress,     LimitText,  0,  "12"
+HKR, Ndi\params\NetworkAddress,     UpperCase,  0,  "1"
+HKR, Ndi\params\NetworkAddress,     optional,   0,  "1"
+HKR, Ndi\params\NetworkAddress,     type,       0,  "edit"
+HKR, Ndi\Params\StaPreferredBand,         			ParamDesc,  	0, %PreferredBand%
+HKR, Ndi\Params\StaPreferredBand,         			Type,       	0, "enum"
+HKR, Ndi\Params\StaPreferredBand\enum,    			"4",        	0, %Preferred6GBand%
+HKR, Ndi\Params\StaPreferredBand\enum,    			"3",        	0, %Preferred5GBand%
+HKR, Ndi\Params\StaPreferredBand\enum,    			"2",        	0, %Preferred2GBand%
+HKR, Ndi\Params\StaPreferredBand\enum,    			"1",        	0, %PreferredBandNone%
+HKR, Ndi\Params\StaPreferredBand,         			Default,    	0, "1"
+HKR, Ndi\Params\StaWirelessMode,         			ParamDesc,  	0, %WirelessMode%
+HKR, Ndi\Params\StaWirelessMode,         			Type,       	0, "enum"
+HKR, Ndi\Params\StaWirelessMode\enum,    			"14",        	0, %11be%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"13",        	0, %11a/b/g/n/ac/ax%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"12",        	0, %11a/n/ac/ax%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"11",        	0, %11a/n/ac%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"10",        	0, %11a/n%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"9",        	0, %11b/g/n/ax%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"8",        	0, %11b/g/n%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"7",        	0, %11b/g%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"6",        	0, %11ax%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"5",        	0, %11ac%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"4",        	0, %11n%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"3",        	0, %11g%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"2",        	0, %11b%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"1",        	0, %11a%
+HKR, Ndi\Params\StaWirelessMode\enum,    			"0",        	0, %11deault%
+HKR, Ndi\Params\StaWirelessMode,         			Default,    	0, "0"
+HKR, Ndi\Params\PreferredChanWidth2G,         		ParamDesc,  	0, %Preferred2GChanWidth%
+HKR, Ndi\Params\PreferredChanWidth2G,         		Type,       	0, "enum"
+HKR, Ndi\Params\PreferredChanWidth2G\enum,    		"1",        	0, %ChanWidth20M%
+HKR, Ndi\Params\PreferredChanWidth2G\enum,    		"0",        	0, "Auto"
+HKR, Ndi\Params\PreferredChanWidth2G,         		Default,    	0, "0"
+HKR, Ndi\Params\PreferredChanWidth5G,         		ParamDesc,  	0, %Preferred5GChanWidth%
+HKR, Ndi\Params\PreferredChanWidth5G,         		Type,       	0, "enum"
+HKR, Ndi\Params\PreferredChanWidth5G\enum,    		"1",        	0, %ChanWidth20M%
+HKR, Ndi\Params\PreferredChanWidth5G\enum,    		"0",        	0, %ChanWidthAuto%
+HKR, Ndi\Params\PreferredChanWidth5G,         		Default,    	0, "0"
+HKR, Ndi\Params\PreferredChanWidth6G,         		ParamDesc,  	0, %Preferred6GChanWidth%
+HKR, Ndi\Params\PreferredChanWidth6G,         		Type,       	0, "enum"
+HKR, Ndi\Params\PreferredChanWidth6G\enum,    		"1",        	0, %ChanWidth20M%
+HKR, Ndi\Params\PreferredChanWidth6G\enum,    		"0",        	0, %ChanWidthAuto%
+HKR, Ndi\Params\PreferredChanWidth6G,         		Default,    	0, "0"
+
+[FTMMode.reg]
+HKR, , DriverMode,    0x10001,  "1"
+
+[MSI.reg]
+HKR, "Interrupt Management", ,0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", ,0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 16
+
+[MSI_8.reg]
+HKR, "Interrupt Management", ,0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", ,0x00000010
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MSISupported, 0x00010001, 1
+HKR, "Interrupt Management\MessageSignaledInterruptProperties", MessageNumberLimit, 0x00010001, 8
+
+[WDF.reg]
+HKR, "WDF", "WdfDirectedPowerTransitionEnable", 0x00010001, 1
+
+[roam.reg]
+HKR, , ftEnable, 0x00010001, 1
+
+[wmmac.reg]
+HKR, , wmmacEnable, 0x00010001, 1
+
+[wowEnable.reg]
+HKR, , wowEnable, 0x00010001, 1
+
+[wowWakePattern.reg]
+HKR, Ndi\Params\*WakeOnMagicPacket,          ParamDesc,  0, "WakeOnMagicPacket"
+HKR, Ndi\Params\*WakeOnMagicPacket,          Type,       0, "enum"
+HKR, Ndi\Params\*WakeOnMagicPacket,          Default,    0, "1"
+HKR, Ndi\params\*WakeOnMagicPacket\enum,     "1",        0, "Enable"
+HKR, Ndi\params\*WakeOnMagicPacket\enum,     "0",        0, "Disable"
+HKR, Ndi\Params\*WakeOnPattern,              ParamDesc,  0, "WakeOnPatternMatch"
+HKR, Ndi\Params\*WakeOnPattern,              Type,       0, "enum"
+HKR, Ndi\Params\*WakeOnPattern,              Default,    0, "1"
+HKR, Ndi\params\*WakeOnPattern\enum,         "1",        0, "Enable"
+HKR, Ndi\params\*WakeOnPattern\enum,         "0",        0, "Disable"
+
+[NsOffload.reg]
+HKR, NDI\params\NsOffloadForWow,ParamDesc,,          "NS Offload for WoWWLAN"
+HKR, NDI\params\NsOffloadForWow,type,,               "enum"
+HKR, NDI\params\NsOffloadForWow,Default,,            "1"
+HKR, NDI\params\NsOffloadForWow\enum,0,,             "Disable"
+HKR, NDI\params\NsOffloadForWow\enum,1,,             "Enable"
+
+[enableHwRfKill.reg]
+HKR, , EnableHardwareRFKill, 0x00010001, 1
+
+[enableWmmTxop.reg]
+HKR, Ndi\Params\enableWmmTxop,          ParamDesc,  0, "Throughput Acceleration"
+HKR, Ndi\Params\enableWmmTxop,          Type,       0, "enum"
+HKR, Ndi\Params\enableWmmTxop,          Default,    0, "1"
+HKR, Ndi\params\enableWmmTxop\enum,     "1",        0, "Disable"
+HKR, Ndi\params\enableWmmTxop\enum,     "0",        0, "Enable"
+
+[disableWmmTxop.reg]
+HKR, Ndi\Params\enableWmmTxop,          ParamDesc,  0, "Throughput Acceleration"
+HKR, Ndi\Params\enableWmmTxop,          Type,       0, "enum"
+HKR, Ndi\Params\enableWmmTxop,          Default,    0, "0"
+HKR, Ndi\params\enableWmmTxop\enum,     "1",        0, "Disable"
+HKR, Ndi\params\enableWmmTxop\enum,     "0",        0, "Enable"
+
+[DisableIdlePowerSave.reg]
+HKR, , IdlePowerSave, 0x00010001, 0
+
+[EnableFWLog.reg]
+HKR, , reportEnable,  0x00010001, 1
+HKR, , Loglevel,  0x00010001, 0
+
+[RecoveryPolicy.reg]
+HKR, , RecoveryPolicy, 0x00010001, 2
+
+[enableLegacyBurst.reg]
+HKR, , legacyburstenable, 0x00010001, 1
+
+[DisableReport6GAPtoOS.reg]
+HKR, , DisableReport6GAPtoOS, 0x00010001, 1
+
+[disableCH233.reg]
+HKR, , disableCH233, 0x00010001, 1
+
+[RejectLegacySecBeAp.reg]
+HKR, , RejectLegacySecBeAp, 0x00010001, 0
+
+[FileName.reg]
+HKR, , FWFileName, 0, %FWFileName%
+HKR, , BDFileName, 0, %BDFileName%
+
+[TxBf.reg]
+HKR, ,                                  TxBfeeEnable,                           0x00010001,  "1"
+
+[lso.reg]
+HKR, NDI\params\*LsoV2IPv4,ParamDesc,,          "Large Send Offload V2 (IPv4)"
+HKR, NDI\params\*LsoV2IPv4,type,,               "enum"
+HKR, NDI\params\*LsoV2IPv4,Default,,            "1"
+HKR, NDI\params\*LsoV2IPv4\enum,0,,             "Disable"
+HKR, NDI\params\*LsoV2IPv4\enum,1,,             "Enable"
+
+HKR, NDI\params\*LsoV2IPv6 ,ParamDesc,,         "Large Send Offload V2 (IPv6)"
+HKR, NDI\params\*LsoV2IPv6 ,type,,              "enum"
+HKR, NDI\params\*LsoV2IPv6 ,Default,,           "1"
+HKR, NDI\params\*LsoV2IPv6\enum,0,,             "Disable"
+HKR, NDI\params\*LsoV2IPv6\enum,1,,             "Enable"
+
+
+[checksumOffload.reg]
+HKR, NDI\params\*IPChecksumOffloadIPv4,ParamDesc,,           "IPv4 Checksum Offload"
+HKR, NDI\params\*IPChecksumOffloadIPv4,type,,                "enum"
+HKR, NDI\params\*IPChecksumOffloadIPv4,Default,,             "3"
+HKR, NDI\params\*IPChecksumOffloadIPv4\enum,0,,              "Disable"
+HKR, NDI\params\*IPChecksumOffloadIPv4\enum,1,,              "Tx Enable"
+HKR, NDI\params\*IPChecksumOffloadIPv4\enum,2,,              "Rx Enable"
+HKR, NDI\params\*IPChecksumOffloadIPv4\enum,3,,              "Rx & Tx Enable"
+
+HKR, NDI\params\*TCPChecksumOffloadIPv4,ParamDesc,,          "TCP Checksum Offload (IPv4)"
+HKR, NDI\params\*TCPChecksumOffloadIPv4,type,,               "enum"
+HKR, NDI\params\*TCPChecksumOffloadIPv4,Default,,            "3"
+HKR, NDI\params\*TCPChecksumOffloadIPv4\enum,0,,             "Disable"
+HKR, NDI\params\*TCPChecksumOffloadIPv4\enum,1,,             "Tx Enable"
+HKR, NDI\params\*TCPChecksumOffloadIPv4\enum,2,,             "Rx Enable"
+HKR, NDI\params\*TCPChecksumOffloadIPv4\enum,3,,             "Rx & Tx Enable"
+
+HKR, NDI\params\*TCPChecksumOffloadIPv6,ParamDesc,,          "TCP Checksum Offload (IPv6)"
+HKR, NDI\params\*TCPChecksumOffloadIPv6,type,,               "enum"
+HKR, NDI\params\*TCPChecksumOffloadIPv6,Default,,            "3"
+HKR, NDI\params\*TCPChecksumOffloadIPv6\enum,0,,             "Disable"
+HKR, NDI\params\*TCPChecksumOffloadIPv6\enum,1,,             "Tx Enable"
+HKR, NDI\params\*TCPChecksumOffloadIPv6\enum,2,,             "Rx Enable"
+HKR, NDI\params\*TCPChecksumOffloadIPv6\enum,3,,             "Rx & Tx Enable"
+
+HKR, NDI\params\*UDPChecksumOffloadIPv4,ParamDesc,,          "UDP Checksum Offload (IPv4)"
+HKR, NDI\params\*UDPChecksumOffloadIPv4,type,,               "enum"
+HKR, NDI\params\*UDPChecksumOffloadIPv4,Default,,            "3"
+HKR, NDI\params\*UDPChecksumOffloadIPv4\enum,0,,             "Disable"
+HKR, NDI\params\*UDPChecksumOffloadIPv4\enum,1,,             "Tx Enable"
+HKR, NDI\params\*UDPChecksumOffloadIPv4\enum,2,,             "Rx Enable"
+HKR, NDI\params\*UDPChecksumOffloadIPv4\enum,3,,             "Rx & Tx Enable"
+
+HKR, NDI\params\*UDPChecksumOffloadIPv6,ParamDesc,,          "UDP Checksum Offload (IPv6)"
+HKR, NDI\params\*UDPChecksumOffloadIPv6,type,,               "enum"
+HKR, NDI\params\*UDPChecksumOffloadIPv6,Default,,            "3"
+HKR, NDI\params\*UDPChecksumOffloadIPv6\enum,0,,             "Disable"
+HKR, NDI\params\*UDPChecksumOffloadIPv6\enum,1,,             "Tx Enable"
+HKR, NDI\params\*UDPChecksumOffloadIPv6\enum,2,,             "Rx Enable"
+HKR, NDI\params\*UDPChecksumOffloadIPv6\enum,3,,             "Rx & Tx Enable"
+
+
+[ReceiveSideScaling.reg]
+HKR, Ndi\Params\*RSS,                            ParamDesc,      0, "Receive Side Scaling"
+HKR, Ndi\Params\*RSS,                            default,        0, "0"
+HKR, Ndi\Params\*RSS,                            type,           0, "enum"
+HKR, Ndi\Params\*RSS\enum,                       "0",            0, "Disabled"
+HKR, Ndi\Params\*RSS\enum,                       "1",            0, "Enabled"
+
+HKR, Ndi\Params\*RSSProfile,                     ParamDesc,      0, "RSS load balancing profile"
+HKR, Ndi\Params\*RSSProfile,                     default,        0, "4"
+HKR, Ndi\Params\*RSSProfile,                     type,           0, "enum"
+HKR, Ndi\Params\*RSSProfile\enum,                "1",            0, "ClosestProcessor"
+HKR, Ndi\Params\*RSSProfile\enum,                "2",            0, "ClosestProcessorStatic"
+HKR, Ndi\Params\*RSSProfile\enum,                "3",            0, "NUMAScaling"
+HKR, Ndi\Params\*RSSProfile\enum,                "4",            0, "NUMAScalingStatic"
+HKR, Ndi\Params\*RSSProfile\enum,                "5",            0, "ConservativeScaling"
+
+; *RssBaseProcNumber
+HKR, Ndi\params\*RssBaseProcNumber,              ParamDesc,      0, "Base Processor Number"
+HKR, Ndi\params\*RssBaseProcNumber,              Default,        0, "0"
+HKR, Ndi\params\*RssBaseProcNumber,              type,           0, "edit"
+
+; *NumRSSQueues
+HKR, Ndi\Params\*NumRSSQueues,                   ParamDesc,      0, "Maximum Number of RSS Queues"
+HKR, Ndi\Params\*NumRSSQueues,                   default,        0, "4"
+HKR, Ndi\Params\*NumRSSQueues,                   type,           0, "int"
+HKR, Ndi\Params\*NumRSSQueues,                   Min,            0, "1"
+HKR, Ndi\Params\*NumRSSQueues,                   Max,            0, "4"
+
+[DisableS0Idle.reg]
+; *IdleRestriction Enable
+HKR, Ndi\Params\*IdleRestriction,                            ParamDesc,      0, "Idle Power Down Restriction"
+HKR, Ndi\Params\*IdleRestriction,                            default,        0, "1"
+HKR, Ndi\Params\*IdleRestriction,                            type,           0, "enum"
+HKR, Ndi\Params\*IdleRestriction\enum,                       "0",            0, "Disabled"
+HKR, Ndi\Params\*IdleRestriction\enum,                       "1",            0, "Enabled"
+
+[EnableShowPowerPage.reg]
+HKR, , ShowPowerPage, 0x00010001, 1
+
+[PcieLinkRetry.reg]
+HKR, , PcieLinkRetry, 0x00010001, 1
+
+[DynamicIMPS.reg]
+HKR, , IdlePowerSave, 0x00010001, 2
+HKR, , ProtocolPowerSave, 0x00010001, 0
+
+[QcWlanFWFile.CopyFiles]
+wlanfw20.mbn,,,2
+phy_ucode20.elf,,,2
+bdwlan.elf,,,2
+regdb.bin,,,2
+Data20.msc,,,2
+qdss_trace_config_v1.cfg,,,2
+qdss_trace_config_v2.cfg,,,2
+
+[QcWlan_BD_BERYLLIUM.CopyFiles]
+bdwlan01.e02,,,2
+bdwlan01.e04,,,2
+bdwlan01.e06,,,2
+bdwlan01.e08,,,2
+bdwlan01.e0e,,,2
+bdwlan01.e12,,,2
+bdwlan01.e1e,,,2
+
+[BD_NCM865.reg]
+HKR, , BDFileName, 0x00000000, "bdwlan_wcn785x_2p0_ncm865.elf"
+HKR, , EnableCustomizedRegdomain, 0x00010001, 4
+
+[BD_NCM865_D.reg]
+HKR, , BDFileName, 0x00000000, "bdwlan_wcn785x_2p0_ncm865_QC_revB.elf"
+HKR, , EnableCustomizedRegdomain, 0x00010001, 4
+
+[BD_NCM825.reg]
+HKR, , BDFileName, 0x00000000, "bdwlan_wcn785x_2p0_ncm825.elf"
+HKR, , EnableCustomizedRegdomain, 0x00010001, 3
+
+[BD_NCM835.reg]
+HKR, , BDFileName, 0x00000000, "bdwlan_wcn785x_2p0_ncm835.elf"
+HKR, , EnableCustomizedRegdomain, 0x00010001, 4
+
+[BD_NCM835_H.reg]
+HKR, , BDFileName, 0x00000000, "bdwlan_wcn785x_2p0_ncm835_QC_revB.elf"
+HKR, , EnableCustomizedRegdomain, 0x00010001, 4
+
+[QcWlan_BD_NCM865.CopyFiles]
+bdwlan_wcn785x_2p0_ncm865.elf,,,2
+bdwlan_wcn785x_2p0_ncm865_QC_5mm.elf,,,2
+bdwlan_wcn785x_2p0_ncm865_QC_revB.elf,,,2
+
+[QcWlan_BD_A_NCM865.CopyFiles]
+bdwlan_wcn785x_2p0_ncm865_AC_RAY16ZPB.elf,,,2
+
+[QcWlan_BD_NCM825.CopyFiles]
+bdwlan01.e12,,,2
+bdwlan_wcn785x_2p0_NCM825.elf,,,2
+bdwlan_wcn785x_2p0_ncm825_QC_revB.elf,,,2
+
+[QcWlan_BD_LE_NCM825.CopyFiles]
+bdwlan_wcn785x_2p0_ncm825_LE.elf,,,2
+bdwlan_wcn785x_2p0_ncm825_LE_Eiger.elf,,,2
+
+[QcWlan_BD_NCM835.CopyFiles]
+bdwlan_wcn785x_2p0_ncm835.elf,,,2
+bdwlan_wcn785x_2p0_ncm835_QC_revB.elf,,,2
+
+[QcWlan.Service]
+DisplayName     = %QcWlan.Service.DispName%
+ServiceType     = 1         ;SERVICE_KERNEL_DRIVER
+StartType       = 3         ;SERVICE_DEMAND_START
+ErrorControl    = 1         ;SERVICE_ERROR_NORMAL
+ServiceBinary   = %12%\qcwlan64.sys
+LoadOrderGroup  = NDIS
+
+[QcWlan_DMAr.Service]
+DisplayName     = %QcWlan.Service.DispName%
+ServiceType     = 1         ;SERVICE_KERNEL_DRIVER
+StartType       = 3         ;SERVICE_DEMAND_START
+ErrorControl    = 1         ;SERVICE_ERROR_NORMAL
+ServiceBinary   = %12%\qcwlan64.sys
+LoadOrderGroup  = NDIS
+AddReg          = QcWlan_DMAr.Service.AddReg
+
+[QcWlan_DMAr.Service.AddReg]
+HKR,Parameters,DmaRemappingCompatible,0x00010001,1
+
+[QcWlan.EventLog]
+AddReg = QcWlan.AddEventLog.reg
+
+[QcWlan.AddEventLog.reg]
+HKR, , EventMessageFile, 0x00020000, "%%SystemRoot%%\System32\netevent.dll"
+HKR, , TypesSupported,   0x00010001, 7
+
+
+[QcWlan.AddPublisher]
+ProviderName=WlanLogger
+ResourceFile=%12%\qcwlan64.sys
+MessageFile=%12%\qcwlan64.sys
+ImportChannel=System
+ImportChannel=Application
+ImportChannel=TraceClassic
+
+[QcWlan.AddSystemEventlogger]
+AddAutoLoggerProvider=%GUIDQcWlan%,QcWlan.AddSystemEventlogger.provider
+
+[QcWlan.AddSystemEventlogger.provider]
+Enabled=0
+EnableLevel=0
+EnablePropety=1
+MatchAnyKeyword=0x5f0
+MatchAllKeyword=0
+
+[QcWlan.AddWifiIHVAutologger]
+AddAutoLoggerProvider=%GUIDQcWlan%,QcWlan.AddWifiIHVAutologger.provider
+
+[QcWlan.AddWifiIHVAutologger.provider]
+Enabled=1
+EnableLevel=0xff
+
+[QcWlan.CopyFiles]
+qcwlan64.sys,,,2
+
+;;;
+
+[SourceDisksNames]
+1 = %DiskDescription%,,,
+
+[SourceDisksFiles]
+qcwlan64.sys                         = 1,,
+wlanfw20.mbn                           = 1,,
+phy_ucode20.elf                        = 1,,
+bdwlan.elf                           = 1,,
+bdwlan01.e02						 = 1,,
+bdwlan01.e04						 = 1,,
+bdwlan01.e06						 = 1,,
+bdwlan01.e08						 = 1,,
+bdwlan01.e0e						 = 1,,
+bdwlan01.e12	                	 = 1,,
+bdwlan01.e1e						 = 1,,
+bdwlan_wcn785x_2p0_NCM865.elf		 = 1,,
+bdwlan_wcn785x_2p0_ncm865_AC_RAY16ZPB.elf		 = 1,,
+bdwlan_wcn785x_2p0_ncm865_QC_5mm.elf	= 1,,
+bdwlan_wcn785x_2p0_ncm865_QC_revB.elf	= 1,,
+bdwlan_wcn785x_2p0_NCM825.elf		 = 1,,
+bdwlan_wcn785x_2p0_ncm825_QC_revB.elf	= 1,,
+bdwlan_wcn785x_2p0_ncm825_LE.elf     = 1,,
+bdwlan_wcn785x_2p0_ncm825_LE_Eiger.elf     = 1,,
+bdwlan_wcn785x_2p0_ncm835.elf		 = 1,,
+bdwlan_wcn785x_2p0_ncm835_QC_revB.elf	= 1,,
+regdb.bin                            = 1,,
+Data20.msc                             = 1,,
+qdss_trace_config_v1.cfg			 = 1,,
+qdss_trace_config_v2.cfg			 = 1,,
+
+[DestinationDirs]
+QcWlan.CopyFiles                  = 12
+QcWlanFWFile.CopyFiles            = 12
+QcWlan_BD_BERYLLIUM.CopyFiles     = 12
+QcWlan_BD_NCM865.CopyFiles        = 12
+QcWlan_BD_NCM825.CopyFiles        = 12
+QcWlan_BD_LE_NCM825.CopyFiles     = 12
+QcWlan_BD_A_NCM865.CopyFiles      = 12
+QcWlan_BD_NCM835.CopyFiles        = 12		
+
+[Strings]
+Msft                         = "Microsoft"
+QUALCOMM                     = "Qualcomm Communications Inc."
+QcWlan.Service.DispName      = "Qualcomm Extensible Wireless LAN 11BE device driver"
+DiskDescription              = "Qualcomm Sample Driver Disk 1"
+Enable                       = "Enable"
+Disable                      = "Disable"
+RoamAggressive               = "Roaming aggressiveness"
+RssiLowest                   = "1.Lowest"
+RssiMedium-low               = "2.Medium-low"   
+RssiMedium                   = "3.Medium"
+RssiMedium-high              = "4.Medium-high"
+RssiHighest                  = "5.Highest"
+NetworkAddress               = "Network Address"
+FWFileName                   = "wlanfw.mbn"
+BDFileName                   = "bdwlan.elf"
+PreferredBand                = "Preferred Band"
+Preferred6GBand              = "6Ghz Band Preferred"
+Preferred5GBand              = "5Ghz Band Preferred"
+Preferred2GBand              = "2.4Ghz Band Preferred"
+PreferredBandNone            = "No Preference (default)"
+WirelessMode                 = "Wireless Mode"
+11be                         = "14 - 11be"
+11a/b/g/n/ac/ax              = "13 - 11a/b/g/n/ac/ax"
+11a/n/ac/ax                  = "12 - 11a/n/ac/ax"
+11a/n/ac                     = "11 - 11a/n/ac"
+11a/n                        = "10 - 11a/n"
+11b/g/n/ax                   = "09 - 11b/g/n/ax"
+11b/g/n                      = "08 - 11b/g/n"
+11b/g                        = "07 - 11b/g"
+11ax                         = "06 - 11ax"
+11ac                         = "05 - 11ac"
+11n                          = "04 - 11n"
+11g                          = "03 - 11g"
+11b                          = "02 - 11b"
+11a                          = "01 - 11a"
+11deault                     = "00 - 11a/b/g/n/ac/ax/be (default)"
+Preferred2GChanWidth         = "2.4GHz channel bandwidth"
+Preferred5GChanWidth         = "5GHz channel bandwidth"
+Preferred6GChanWidth         = "6GHz channel bandwidth"
+ChanWidth20M                 = "20MHz only"
+ChanWidthAuto                = "Auto"
+GUIDQcWlan                   = "{bb6f5b93-635c-47be-816f-e895e77064a8}"
+QcWlan.DeviceDesc.785x       = "Qualcomm FastConnect 7800 HBS Multi-link 2x2 Wi-Fi 7 Network Adapter"
+QcWlan.DeviceDesc.785x_M     = "Qualcomm(R) FastConnect(TM) 7800 Mobile Connectivity System"
+QcWlan.DeviceDesc.NCM865     = "Qualcomm FastConnect 7800 Wi-Fi 7 High Band Simultaneous (HBS) Network Adapter"
+QcWlan.DeviceDesc.NCM865_D   = "Qualcomm FastConnect 7800 Wi-Fi 7 High Band Simultaneous (HBS) Network Adapter"
+QcWlan.DeviceDesc.NCM825     = "Qualcomm FastConnect 7800 Wi-Fi 7 Dual Band Simultaneous (DBS) Network Adapter"
+QcWlan.DeviceDesc.NCM835     = "Qualcomm FastConnect 7800 Wi-Fi 7 Dual Band Simultaneous (DBS) Network Adapter"
