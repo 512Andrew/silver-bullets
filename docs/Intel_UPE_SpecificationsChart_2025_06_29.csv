@@ -1,0 +1,60 @@
+﻿UPE | 
+06/29/2025 03:13:57 PM
+,Intel® Q87 Chipset
+
+Essentials
+Product Collection,Intel® 8 Series Chipsets
+Code Name,Products formerly Lynx Point
+Vertical Segment,Desktop
+Marketing Status,Discontinued
+Launch Date,Q2'13
+TDP,4.1 W
+Recommended Customer Price,$47.00
+Supports Memory Overclocking,No
+Use Conditions,Industrial Commercial Temp |  Embedded Broad Market Commercial Temp |  PC/Client/Tablet
+
+Supplemental Information
+Embedded Options Available,Yes
+
+Memory Specifications
+# of DIMMs per channel,2
+
+GPU Specifications
+Integrated Graphics ‡,No
+Graphics Output,VGA
+# of Displays Supported ‡,3
+
+Expansion Options
+PCI Support,No
+PCI Express Revision,2.0
+PCI Express Configurations ‡,x1 |  x2 |  x4
+Max # of PCI Express Lanes,8
+
+I/O Specifications
+# of USB Ports,14
+USB Revision,3.0/2.0
+USB 3.0,6
+USB 2.0,8
+Total # of SATA Ports,6
+Max # of SATA 6.0 Gb/s Ports,6
+Integrated LAN,MAC
+Supported Processor PCI Express Port Revision,3
+Supported Processor PCI Express Port Configurations,1x16
+
+Package Specifications
+Package Size,23mm x 22mm
+
+Advanced Technologies
+Intel® Virtualization Technology for Directed I/O (VT-d) ‡,Yes
+Intel® ME Firmware Version,9.0
+Intel® Rapid Storage Technology,Yes
+Intel® Smart Connect Technology,Yes
+Intel® Standard Manageability,Yes
+Intel® Smart Response Technology,Yes
+Intel® Stable IT Platform Program (SIPP),Yes
+Intel® Rapid Start Technology,Yes
+
+Security & Reliability
+Intel vPro® Eligibility ‡,Intel vPro® Platform
+Intel® Trusted Execution Technology ‡,Yes
+Anti-Theft Technology,Yes

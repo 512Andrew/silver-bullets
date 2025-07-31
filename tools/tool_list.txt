@@ -1,0 +1,17 @@
+List of included tools goes here.
+
+Intel Management Engine System Tools v9.1 r7
+Intel MEI Driver INF
+
+Intel CSME System Toolsv11.0.5.1189
+UEFITool 0.28.0 win and linux
+UEFITool NE a72 win and linux
+fpt.exe & fpt.efi
+fitc & fparts.txt
+bmcfwupd-master
+Shell Scanner
+MEAnalyzer-master
+ssu_3.0.0.2
+firmware-anatomy-master
+hwi64_828.exe
+HWiNFOPortable_8.28.5770_Engish.paf.exe
